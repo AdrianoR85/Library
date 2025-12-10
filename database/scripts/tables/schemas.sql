@@ -1,0 +1,5 @@
+CREATE SCHEMA book;
+CREATE SCHEMA process;
+CREATE SCHEMA authentication;
+CREATE SCHEMA customer;
+CREATE SCHEMA staff;
