@@ -157,13 +157,13 @@ library_api/
 - [x] Criar estrutura de pastas do projeto
 - [x] Configurar `.gitignore`
 - [x] Executar scripts SQL no PostgreSQL
-- [ ] Ajustar coluna `password` para VARCHAR(255) no banco
+- [x] Ajustar coluna `password` para VARCHAR(255) no banco
 
 ---
 
 ## 🏗️ 2. Implementação Base
-- [ ] Criar `app/core/config.py` - Carregar configurações do `.env`
-- [ ] Criar `app/database/connection.py` - Pool de conexões PostgreSQL
+- [x] Criar `app/core/config.py` - Carregar configurações do `.env`
+- [x] Criar `app/database/connection.py` - Pool de conexões PostgreSQL
 - [ ] Criar `app/core/security.py` - Hash de senhas e JWT
 - [ ] Criar `app/core/dependencies.py` - Injeção de dependências
 - [ ] Criar `app/main.py` - Inicializar FastAPI
