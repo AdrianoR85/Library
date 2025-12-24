@@ -19,18 +19,18 @@ Sistema completo de gerenciamento de biblioteca com banco de dados PostgreSQL e 
 - [x] Criar schemas (`authentication`, `book`, `customer`, `staff`, `process`)  
 - [x] Criar tabelas conforme o modelo lógico  
 - [x] Criar relacionamentos (PKs, FKs, constraints)  
-- [ ] Criar *indexes* úteis  
+- [x] Criar *indexes* úteis  
 - [ ] Criar *views* de apoio  
-- [ ] Criar *sequences* (se necessário)  
+- [x] Criar *sequences* (se necessário)  
 - [ ] Criar *roles* e *grants* por schema  
 
 ---
 
 ## 🧪 3. Ambiente de Desenvolvimento
-- [ ] Criar instância Docker separada para **dev**  
-- [ ] Popular banco de dev com dados fictícios  
-- [ ] Criar script de reset (`reset_dev.sh`)  
-- [ ] Criar `init.sql` com estado inicial versionado  
+- [x] Criar instância Docker separada para **dev**  
+- [x] Popular banco de dev com dados fictícios  
+- [x] Criar script de reset (`reset_dev.sh`)  
+- [x] Criar `init.sql` com estado inicial versionado  
 
 ---
 
