@@ -164,7 +164,7 @@ library_api/
 ## 🏗️ 2. Implementação Base
 - [x] Criar `app/core/config.py` - Carregar configurações do `.env`
 - [x] Criar `app/database/connection.py` - Pool de conexões PostgreSQL
-- [ ] Criar `app/core/security.py` - Hash de senhas e JWT
+- [x] Criar `app/core/security.py` - Hash de senhas e JWT
 - [ ] Criar `app/core/dependencies.py` - Injeção de dependências
 - [ ] Criar `app/main.py` - Inicializar FastAPI
 - [ ] Testar conexão com banco de dados

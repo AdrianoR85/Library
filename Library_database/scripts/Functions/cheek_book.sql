@@ -1,5 +1,5 @@
-CREATE OR REPLACE FUNCTION process.fn_reserve_book_copy(p_id_book INT)
-RETURNS BOOLEAN AS $$
+CREATE OR REPLACE FUNCTION process.fn_reserve_book_copy(p_id_book INTEGER)
+RETURNS INT AS $$
 DECLARE
     v_id_copy INT;
 BEGIN
@@ -11,9 +11,12 @@ BEGIN
     FOR UPDATE SKIP LOCKED;
 
     IF v_id_copy IS NULL THEN
-        RETURN EXECEPTION 'No available copies for the requested book.';
+        RAISE EXCEPTION 'No available copies for the requested book.';
     END IF;
     
-    RETURN book.book_copy;
+    fn_update_copy_numbers(v_id_copy);
 END;
 $$ LANGUAGE plpgsql;
+
+
+SELECT fn_reserve_book_copy(1);
