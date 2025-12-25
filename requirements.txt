@@ -17,6 +17,8 @@ argon2-cffi==25.1.0
 argon2-cffi-bindings==25.1.0
 cffi==2.0.0
 annotated-types==0.7.0
+sqlalchemy==2.0.45
+sqlalchemy-utils==0.42.1
 # **FastAPI** - Framework web
 # **PostgreSQL** - Banco de dados (presumindo pelo SQL)
 # **psycopg2** ou **asyncpg** - Driver de conexão com PostgreSQL

@@ -4,10 +4,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional
 from .config import settings
 
-
-
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
-
 
 
 def hash_password(password: str) -> str:
@@ -44,4 +41,3 @@ def decode_access_token(token: str) -> Optional[dict]:
         return None
     except JWTError:
         return None
-  
