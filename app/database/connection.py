@@ -1,9 +1,9 @@
-from app.core.config import settings
 from typing import AsyncGenerator
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
+from ..core.config import settings
 
 
 engine = create_engine(

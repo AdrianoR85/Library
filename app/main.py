@@ -1,3 +1,4 @@
-from core.security import hash_password, verify_password, create_access_token, decode_access_token
+from fastapi import FastAPI
 
-print(hash_password("my"))  
+app = FastAPI()
+

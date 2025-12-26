@@ -32,7 +32,7 @@ async def get_current_user(token: Token) -> Dict[str, Any]:
     if username is None or user_id is None or role is None: 
       raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authentication credentials")
     
-    return { "username": username, "id": user_id, "role": role }
+    return { "sub": username, "id": user_id, "role": role }
   
   except Exception:
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid authentication credentials")
@@ -40,8 +40,8 @@ async def get_current_user(token: Token) -> Dict[str, Any]:
 
 async def authenticate_user(username: str, password: str, db: DBConn) -> Optional[Dict[str, Any]]:
   """
-  Authenticate a user by verifying username and password.
-  Returns user data if authentication succeeds, None otherwise.
+  #Authenticate a user by verifying username and password.
+  #Returns user data if authentication succeeds, None otherwise.
   """
   auth = db.query(Auth).filter(Auth.username == username).first()
   if auth is None: 

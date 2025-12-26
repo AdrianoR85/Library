@@ -22,7 +22,7 @@ Sistema completo de gerenciamento de biblioteca com banco de dados PostgreSQL e 
 - [x] Criar *indexes* úteis  
 - [ ] Criar *views* de apoio  
 - [x] Criar *sequences* (se necessário)  
-- [ ] Criar *roles* e *grants* por schema  
+- [x] Criar *roles* e *grants* por schema  
 
 ---
 
@@ -165,7 +165,7 @@ library_api/
 - [x] Criar `app/core/config.py` - Carregar configurações do `.env`
 - [x] Criar `app/database/connection.py` - Pool de conexões PostgreSQL
 - [x] Criar `app/core/security.py` - Hash de senhas e JWT
-- [ ] Criar `app/core/dependencies.py` - Injeção de dependências
+- [x] Criar `app/core/dependencies.py` - Injeção de dependências
 - [ ] Criar `app/main.py` - Inicializar FastAPI
 - [ ] Testar conexão com banco de dados
 
