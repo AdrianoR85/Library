@@ -166,14 +166,14 @@ library_api/
 - [x] Criar `app/database/connection.py` - Pool de conexões PostgreSQL
 - [x] Criar `app/core/security.py` - Hash de senhas e JWT
 - [x] Criar `app/core/dependencies.py` - Injeção de dependências
-- [ ] Criar `app/main.py` - Inicializar FastAPI
-- [ ] Testar conexão com banco de dados
+- [x] Criar `app/main.py` - Inicializar FastAPI
+- [x] Testar conexão com banco de dados
 
 ---
 
 ## 🔐 3. Sistema de Autenticação
-- [ ] Criar `app/models/user.py` - Schemas de usuário
-- [ ] Criar `app/repositories/user_repository.py` - CRUD de usuários
+- [x] Criar `app/models/user.py` - Schemas de usuário
+- [x] Criar `app/repositories/user_repository.py` - CRUD de usuários
 - [ ] Criar `app/services/auth_service.py` - Lógica de autenticação
 - [ ] Criar endpoint `POST /api/v1/auth/register` - Cadastro
 - [ ] Criar endpoint `POST /api/v1/auth/login` - Login (retorna JWT)

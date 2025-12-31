@@ -1,35 +1,42 @@
 from typing import AsyncGenerator
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy_utils import database_exists, create_database
+from sqlalchemy import create_engine
 from ..core.config import settings
 
 
-engine = create_engine(
-  settings.database_url, #Must be: postgresql+asyncpg://user:pass@host/db
-  echo=True,  # Show SQL queries (remove in production)
-  pool_size=10, # maximum number of connections in the pool
-  pool_timeout=30, # pool wait timeout in seconds
-  max_overflow=20, # Extra connections when needed
-  pool_pre_ping=True # Check if connections are alive
+# Asynchronous engine for async operations
+engine = create_async_engine(
+    settings.database_url,  # Must be: postgresql+asyncpg://user:pass@host/db
+    echo=True,  # Show SQL queries (remove in production)
+    pool_size=10, # maximum number of connections in the pool
+    pool_timeout=30, # pool wait timeout in seconds
+    max_overflow=20, # Extra connections when needed
+    pool_pre_ping=True # Check if connections are alive
 )
 
 if not database_exists(engine.url):
     create_database(engine.url)
     print(f"✅ Database {settings.DATABASE_NAME} created.")
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+AsyncSessionLocal = async_sessionmaker(
+    engine,
+    class_=AsyncSession,
+    expire_on_commit=False,
+    autocommit=False,
+    autoflush=False
+)
 
 Base = declarative_base()
 
 
 async def get_db() -> AsyncGenerator:
     """Provide a database session to path operations."""
-    db = SessionLocal()
+    db = AsyncSessionLocal()
     try:
         yield db
     finally:
-        db.close()
+        await db.close()
 
 

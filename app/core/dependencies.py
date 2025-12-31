@@ -1,18 +1,18 @@
-"""
-This module is responsible for defining the dependencies used throughout the FastAPI application, mainly, it will handle authentication and authorization mechanisms.
+"""This module is responsible for defining the dependencies used throughout the FastAPI application, mainly, it will handle authentication and authorization mechanisms.
 """
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 from typing import Optional, Annotated, Any, Dict
 from .security import decode_access_token, verify_password
 from ..models.auth import Auth
 from ..database.connection import get_db
 
-oauth2_bearer = OAuth2PasswordBearer(tokenUrl="auth/token")
+oauth2_bearer = OAuth2PasswordBearer(tokenUrl="api/v1/auth/token")
 
 Token = Annotated[str, Depends(oauth2_bearer)]
-DBConn = Annotated[Session, Depends(get_db)]
+DBConn = Annotated[AsyncSession, Depends(get_db)]
 
 
 async def get_current_user(token: Token) -> Dict[str, Any]:
@@ -43,7 +43,9 @@ async def authenticate_user(username: str, password: str, db: DBConn) -> Optiona
   #Authenticate a user by verifying username and password.
   #Returns user data if authentication succeeds, None otherwise.
   """
-  auth = db.query(Auth).filter(Auth.username == username).first()
+  result = await db.execute(select(Auth).filter(Auth.username == username))
+  auth = result.scalar_one_or_none()
+  
   if auth is None: 
     return None
 
