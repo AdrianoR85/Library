@@ -174,7 +174,7 @@ library_api/
 ## 🔐 3. Sistema de Autenticação
 - [x] Criar `app/models/user.py` - Schemas de usuário
 - [x] Criar `app/repositories/user_repository.py` - CRUD de usuários
-- [ ] Criar `app/services/auth_service.py` - Lógica de autenticação
+- [x] Criar `app/services/auth_service.py` - Lógica de autenticação
 - [ ] Criar endpoint `POST /api/v1/auth/register` - Cadastro
 - [ ] Criar endpoint `POST /api/v1/auth/login` - Login (retorna JWT)
 - [ ] Criar endpoint `GET /api/v1/auth/me` - Usuário autenticado
