@@ -20,12 +20,12 @@ class AuthService:
                 detail="Username already registered.",
             )
 
-        hashed_password = hash_password(user_data.password)
+        password = hash_password(user_data.password)
 
         user = await UserRepository.create_user(
             db=db,
             username=user_data.username,
-            hashed_password=hashed_password,
+            password=password,
             role=user_data.role,
         )
 

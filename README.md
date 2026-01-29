@@ -36,7 +36,7 @@ Sistema completo de gerenciamento de biblioteca com banco de dados PostgreSQL e 
 
 ## ⚙️ 4. Lógica de Negócio (Functions, Triggers, Procedures)
 ### Reservas
-- [ ] Criar função para validar disponibilidade do livro  
+- [x] Criar função para validar disponibilidade do livro  
 - [ ] Criar trigger BEFORE INSERT na tabela de reservas  
 - [ ] Criar função para atualizar status do livro  
 - [ ] Criar trigger AFTER INSERT/UPDATE para manter o catálogo atualizado  
@@ -175,9 +175,9 @@ library_api/
 - [x] Criar `app/models/user.py` - Schemas de usuário
 - [x] Criar `app/repositories/user_repository.py` - CRUD de usuários
 - [x] Criar `app/services/auth_service.py` - Lógica de autenticação
-- [ ] Criar endpoint `POST /api/v1/auth/register` - Cadastro
-- [ ] Criar endpoint `POST /api/v1/auth/login` - Login (retorna JWT)
-- [ ] Criar endpoint `GET /api/v1/auth/me` - Usuário autenticado
+- [x] Criar endpoint `POST /api/v1/auth/register` - Cadastro
+- [x] Criar endpoint `POST /api/v1/auth/login` - Login (retorna JWT)
+- [x] Criar endpoint `GET /api/v1/auth/me` - Usuário autenticado
 - [ ] Implementar middleware de autenticação JWT
 - [ ] Testar fluxo completo de autenticação
 

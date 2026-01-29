@@ -19,10 +19,10 @@ class UserRepository:
 
     
     @staticmethod
-    async def create_user(db: AsyncSession, username: str, hashed_password: str, role: str) -> Auth:
+    async def create_user(db: AsyncSession, username: str, password: str, role: str) -> Auth:
         db_user = Auth(
             username=username,
-            password=hashed_password,
+            password=password,
             role=role
         )
         db.add(db_user)

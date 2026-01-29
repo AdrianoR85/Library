@@ -1,22 +1,21 @@
 CREATE OR REPLACE FUNCTION process.fn_update_copy_numbers(p_id_copy integer)
-RETURNS integer
-LANGUAGE plpgsql AS 
-$body$
+RETURNS TRIGGER 
+LANGUAGE plpgsql AS
+$$
 DECLARE
-  v_total_copy INTEGER;
+    v_id_book INTEGER;
 BEGIN
-  SELECT copy_number INTO v_total_copy
-  FROM book.book_copy
-  WHERE id_copy = p_id_copy;
+    IF TG_TABLE_NAME = 'loan' THEN
+      v_id_book := COALESCE(NEW.id_book, OLD.id_book);
+    ELSIF TG_TABLE_NAME = 'reservation' THEN
+      v_id_book := COALESCE(NEW.id_book, OLD.id_book);
+    ELSE
+      RAISE EXCEPTION 'Trigger called from unsupported table: %', TG_TABLE_NAME;
+    END IF;
 
-  IF v_total_copy > 1 THEN
-    UPDATE book.book_copy
-    SET copy_number = copy_number - 1
-    WHERE id_copy = p_id_copy;
-  ELSE
-    UPDATE book.book_copy
-    SET status = 'loaned', copy_number = 0
-    WHERE id_copy = p_id_copy;
-  END IF;
-END;
-$body$; 
+    UPDATE book.book
+    SET total_quantity = (
+      SELECT COALESCE(COUNT(*), 0)
+      FROM book.book_copy
+      WHERE id_book = v_id_book AND status = 'available'
+    )

@@ -1,11 +1,20 @@
 from fastapi import FastAPI, Depends, HTTPException, status
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 
 from app.core.config import settings
 from app.database.connection import get_db
+from app.api.v1.route import api_router
 
-app = FastAPI()
+app = FastAPI(
+    title=settings.APP_NAME,
+    version=settings.APP_VERSION, 
+    description="API para gerenciamento de uma biblioteca, incluindo usuários, livros e empréstimos.",
+    docs_url="/docs",
+    redoc_url="/redoc",
+)
+
+app.include_router(api_router)
 
 @app.get('/', tags=["Root"])
 def read_root():
@@ -24,15 +33,16 @@ def read_root():
 
 
 @app.get("/health", tags=["Health"])
-def health_check(db: Session = Depends(get_db)):
+async def health_check(db: AsyncSession = Depends(get_db)):
   """
   Verifica o status da aplicação e a conexão com o banco de dados.
   """
   try:
     # Testa a conexão com o banco executando uma query simples
-    result = db.execute(text("SELECT 1")).scalar()
+    result = await db.execute(text("SELECT 1"))
+    value = result.scalar()
     
-    if result == 1:
+    if value == 1:
       return {
         "status": "healthy",
         "database": "connected",

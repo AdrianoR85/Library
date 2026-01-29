@@ -5,12 +5,19 @@ from datetime import datetime
 from ..database.connection import Base
 
 class Auth(Base):
-    __tablename__ = 'authentication.auth'
+    __tablename__ = "auth"
+    __table_args__ = {"schema": "authentication"}
     
     id_auth: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     username: Mapped[str] = mapped_column(String, unique=True, index=True, nullable=False)
-    hash_password: Mapped[str] = mapped_column(String, nullable=False)
+    password: Mapped[str] = mapped_column(String, nullable=False)
     role: Mapped[str] = mapped_column(String, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
+
+    def __init__(self, username: str, password: str, role: str = "customer", is_active: bool = True):
+        self.username = username
+        self.password = password
+        self.role = role
+        self.is_active = is_active

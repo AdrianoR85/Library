@@ -16,9 +16,11 @@ engine = create_async_engine(
     pool_pre_ping=True # Check if connections are alive
 )
 
+"""
 if not database_exists(engine.url):
     create_database(engine.url)
     print(f"✅ Database {settings.DATABASE_NAME} created.")
+"""
 
 AsyncSessionLocal = async_sessionmaker(
     engine,
